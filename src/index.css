@@ -1,13 +1,87 @@
-body {
+/* body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-}
+} */
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+body {
+  /* background: radial-gradient(50% 123.47% at 50% 50%, #00ff94 0%, #720059 100%),
+    linear-gradient(121.28deg, #669600 0%, #ff0000 100%),
+    linear-gradient(360deg, #0029ff 0%, #8fff00 100%),
+    radial-gradient(100% 164.72% at 100% 100%, #6100ff 0%, #00ff57 100%),
+    radial-gradient(100% 148.07% at 0% 0%, #fff500 0%, #51d500 100%);
+  background-blend-mode: screen, color-dodge, overlay, difference, normal;
+  margin: 0;
+  font-family: 'Merriweather', serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale; */
+}
+/* rainbow gradient from: https://mdbootstrap.com/docs/standard/extended/to-do-list/ */
+h1 {
+  text-align: center;
+  font-weight: bold;
+  font-family: 'Merriweather', serif;
+  color: black;
+  margin: 0;
+  padding-top: 100px;
+}
+.app {
+  padding: 30px;
+  height: 100vh;
+  justify-content: center;
+}
+
+.todo-list{
+  margin: auto;
+  background: darkgray;
+  border-radius: 4px;
+  padding: 5px;
+  max-width: 400px;
+}
+
+.todo{
+  font-family: 'Merriweather', serif;
+  background: #fff;
+  box-shadow: 1px 1px 1px rgba(0,0,0, 0.15);
+  padding: 3px 10px;
+  font-size: 20px;
+  margin-bottom: 6px;
+  border-radius: 3px;
+  display:flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.todo:hover{ 
+  cursor: grab;
+  background-color: rgb(255, 58, 133);
+  opacity: 50%;
+}
+
+.input{
+  width: 100%;
+  box-sizing: border-box;
+  border: 0;
+  border-radius: 4px;
+  box-shadow: none;
+  padding: 1rem;
+  height: 2.25em;
+  font-size: 20px;
+  font-family: 'Merriweather', serif;
+}
+.btn{
+  background-color: gray;
+  border-radius: 8px;
+  font-family: 'Merriweather', serif;
+  font-weight: bold;
+  font-size: 16px ;    
+  color: white;
+  border: none;
+  padding: 10px 10px;
 }
