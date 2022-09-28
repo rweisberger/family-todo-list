@@ -9,11 +9,22 @@ function Todo({todo, index, remove}) {
     function handle(){
         remove(index);
     }
-    return <div className="todo" onClick={handle}>{todo.task} 
-        <div>
-            <button className="btn" onClick={() => remove(index)}>√</button>
-        </div>
-      </div>
+    return (
+    
+            <tr>
+            <th scope="row" onClick={handle}>{todo.task} </th>
+            <td>{todo.assignedTo}</td>
+            <td><button className="btn" onClick={() => remove(index)}>√</button></td>
+            </tr>
+       
+    )
+    
+    
+    // <div className="todo" onClick={handle}>{todo.task} 
+    //     <div>
+    //         <button className="btn" onClick={() => remove(index)}>√</button>
+    //     </div>
+    //   </div>
   }
 
   function MyList() {
@@ -34,8 +45,9 @@ function Todo({todo, index, remove}) {
             isCompleted: false,
         },
     ]);
-    const addTodo = task => {
-        const newTodos = [...todos, {task:task, isCompleted: false}];
+    const addTodo = (newTask) => {
+        console.log(newTask)
+        const newTodos = [...todos, newTask];
         setTodos(newTodos);  // set todos to new todo list with added value
         console.log(newTodos);
     }
@@ -46,13 +58,24 @@ function Todo({todo, index, remove}) {
         setTodos(currentList)
     }
     return (
-    <div className="box">
+    <div className="">
     <h1>Todo List</h1>
-        <div className="todo-list">
+        {/* <div className="todo-list"> */}
+        <table className="table">
+        <thead>
+            <tr>
+            <th scope="col">Task</th>
+            <th scope="col">Assigned to:</th>
+            <th scope="col">Status</th>
+            </tr>
+        </thead>
+        <tbody>
             {todos.map((todo,i) => <Todo index={i} key={i} todo={todo} remove={removeTodo}/>)}
             {/* this form allows the user to add an input */}
-            <TodoForm addTodo={addTodo}/>
-        </div>
+        </tbody>
+        </table>
+        <TodoForm addTodo={addTodo}/>
+        {/* </div> */}
     </div>
     )
   }

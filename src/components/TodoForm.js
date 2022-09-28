@@ -1,32 +1,45 @@
+import React from "react";
 import { useState } from "react";
 
 function TodoForm({addTodo}){
-    const [value, setValue] = useState('');
+    const [task, setTask] = useState('');
+    const [assignedTo, setAssignedTo] = useState('');
 
-    const handleSubmit = e => {
-        e.preventDefault(); // the default is to reload the page
-        if(!value) return; // check for existing input value
-        addTodo(value);
-        setValue(''); //setting the value back to empty
+    const createTodo = (e) => {
+        if(!task || !assignedTo) {
+            return;
+        } else {
+            e.preventDefault();
+            console.log({task: task, assignedTo: assignedTo, isCompleted: false});
+            let newTask = {task: task, assignedTo: assignedTo, isCompleted: false};
+            addTodo(newTask);
+            setTask(''); //setting the value back to empty
+            setAssignedTo('');
+        }
     }
 
-return(
-<form onSubmit={handleSubmit}> 
-    <input
-        type="text"
-        className="input"
-        value={value}
-        placeholder="New task"
-        onChange={e => setValue(e.target.value)} 
-        />
-        <select id="cars" name="cars">
-            <option value="bill">Bill</option>
-            <option value="saab">Rachel</option>
-            <option value="fiat">Nora</option>
-            <option value="audi">Victor</option>
-      </select>
-   
-</form>
-)
-}
+    
+    return (
+            <form> 
+                <div className="form-group">
+                    <input
+                        type="text"
+                        className="form-control"
+                        value={task}
+                        placeholder="New task"
+                        onChange={e => setTask(e.currentTarget.value)} 
+                        />
+                    <div className="input-group">
+                        <select className="custom-select" id="inputGroupSelect04" value={assignedTo} onChange={e=> setAssignedTo(e.currentTarget.value)}>
+                            <option value="">Choose...</option>
+                            <option value="Bill">Bill</option>
+                            <option value="Rachel">Rachel</option>
+                        </select>
+                        <div className="input-group-append">
+                            <button type="submit" className="btn btn-outline-secondary" onClick={e=> createTodo(e)}>Add</button>
+                        </div>
+                    </div>
+                </div>
+            </form>)
+};
 export default TodoForm;
