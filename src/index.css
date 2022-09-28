@@ -7,10 +7,10 @@
   -moz-osx-font-smoothing: grayscale;
 } */
 
-code {
+/* code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
-}
+} */
 body {
   /* background: radial-gradient(50% 123.47% at 50% 50%, #00ff94 0%, #720059 100%),
     linear-gradient(121.28deg, #669600 0%, #ff0000 100%),
@@ -24,14 +24,14 @@ body {
   -moz-osx-font-smoothing: grayscale; */
 }
 /* rainbow gradient from: https://mdbootstrap.com/docs/standard/extended/to-do-list/ */
-h1 {
+/* h1 {
   text-align: center;
   font-weight: bold;
   font-family: 'Merriweather', serif;
   color: black;
   margin: 0;
   padding-top: 100px;
-}
+} */
 .app {
   padding: 30px;
   height: 100vh;

@@ -26,17 +26,17 @@ function TodoForm({addTodo}){
                         type="text"
                         className="form-control"
                         value={task}
-                        placeholder="New task"
+                        placeholder="Add a new task"
                         onChange={e => setTask(e.currentTarget.value)} 
                         />
                     <div className="input-group">
                         <select className="custom-select" id="inputGroupSelect04" value={assignedTo} onChange={e=> setAssignedTo(e.currentTarget.value)}>
-                            <option value="">Choose...</option>
+                            <option value="">Who will get it done?...</option>
                             <option value="Bill">Bill</option>
                             <option value="Rachel">Rachel</option>
                         </select>
                         <div className="input-group-append">
-                            <button type="submit" className="btn btn-outline-secondary" onClick={e=> createTodo(e)}>Add</button>
+                            <button type="submit" className="btn btn-outline-warning" onClick={e=> createTodo(e)}>Add</button>
                         </div>
                     </div>
                 </div>

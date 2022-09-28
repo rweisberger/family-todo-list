@@ -14,7 +14,7 @@ function Todo({todo, index, remove}) {
             <tr>
             <th scope="row" onClick={handle}>{todo.task} </th>
             <td>{todo.assignedTo}</td>
-            <td><button className="btn" onClick={() => remove(index)}>√</button></td>
+            <td><button className="btn btn-success" onClick={() => remove(index)}>✓</button></td>
             </tr>
        
     )
@@ -58,11 +58,10 @@ function Todo({todo, index, remove}) {
         setTodos(currentList)
     }
     return (
-    <div className="">
-    <h1>Todo List</h1>
-        {/* <div className="todo-list"> */}
+    <div className="container">
+    <h1 class="display-3 text-center">Todo List</h1>
         <table className="table">
-        <thead>
+        <thead className='bg-info'>
             <tr>
             <th scope="col">Task</th>
             <th scope="col">Assigned to:</th>
@@ -71,11 +70,9 @@ function Todo({todo, index, remove}) {
         </thead>
         <tbody>
             {todos.map((todo,i) => <Todo index={i} key={i} todo={todo} remove={removeTodo}/>)}
-            {/* this form allows the user to add an input */}
         </tbody>
         </table>
         <TodoForm addTodo={addTodo}/>
-        {/* </div> */}
     </div>
     )
   }
