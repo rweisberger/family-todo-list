@@ -1,9 +1,8 @@
 import '../App.css';
 import React from 'react';
-import {useState} from 'react';
+import {useState, useContext} from 'react';
 import TodoForm from './TodoForm';
-
-
+import UserContext from './Context';
 
 function Todo({todo, index, remove}) {
     function handle(){
@@ -18,33 +17,27 @@ function Todo({todo, index, remove}) {
             </tr>
        
     )
-    
-    
-    // <div className="todo" onClick={handle}>{todo.task} 
-    //     <div>
-    //         <button className="btn" onClick={() => remove(index)}>√</button>
-    //     </div>
-    //   </div>
   }
 
   function MyList() {
-    const [todos, setTodos] = useState([
-        {
-            task: 'go to bank',
-            assignedTo: 'Bill',
-            isCompleted: false,   
-        },
-        {
-            task: 'wash sheets',
-            assignedTo: 'Rachel',
-            isCompleted: false,
-        },
-        {
-            task: 'find childcare',
-            assignedTo: 'Nora',
-            isCompleted: false,
-        },
-    ]);
+    let ctx = useContext(UserContext);
+    const [todos, setTodos] = useState(ctx.todos)
+    //     {
+    //         task: 'go to bank',
+    //         assignedTo: 'Bill',
+    //         isCompleted: false,   
+    //     },
+    //     {
+    //         task: 'wash sheets',
+    //         assignedTo: 'Rachel',
+    //         isCompleted: false,
+    //     },
+    //     {
+    //         task: 'find childcare',
+    //         assignedTo: 'Nora',
+    //         isCompleted: false,
+    //     },
+    // ]);
     const addTodo = (newTask) => {
         console.log(newTask)
         const newTodos = [...todos, newTask];
@@ -59,7 +52,7 @@ function Todo({todo, index, remove}) {
     }
     return (
     <div className="container">
-    <h1 class="display-3 text-center">Todo List</h1>
+    <h1 className="display-3 text-center">Todo List</h1>
         <table className="table">
         <thead className='bg-info'>
             <tr>

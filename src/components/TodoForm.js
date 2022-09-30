@@ -1,9 +1,11 @@
 import React from "react";
-import { useState } from "react";
+import { useState, useContext } from "react";
+import UserContext from "./Context";
 
 function TodoForm({addTodo}){
     const [task, setTask] = useState('');
     const [assignedTo, setAssignedTo] = useState('');
+    const ctx = useContext(UserContext);
 
     const createTodo = (e) => {
         if(!task || !assignedTo) {
@@ -13,8 +15,10 @@ function TodoForm({addTodo}){
             console.log({task: task, assignedTo: assignedTo, isCompleted: false});
             let newTask = {task: task, assignedTo: assignedTo, isCompleted: false};
             addTodo(newTask);
+            ctx.todos.push(newTask);
             setTask(''); //setting the value back to empty
             setAssignedTo('');
+            console.log(ctx);
         }
     }
 
