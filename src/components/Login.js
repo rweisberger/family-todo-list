@@ -23,8 +23,8 @@ const findUser = () => {
                     alert('Incorrect username and password combinations- please try again!')
                 }
             })
-
 }
+
     return(
     // <div className="container mt-5">
         <div className="card bg-info m-5">

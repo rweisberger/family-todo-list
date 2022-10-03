@@ -14,6 +14,7 @@
             {/* <a className="nav-item nav-link px-3" href="#/">Home </a> */}
             <a className="nav-item nav-link px-3" href="#/createAccount">Create Account</a>
             <a className="nav-item nav-link px-3" href="#/login">Login</a>
+            <a className="nav-item nav-link px-3" href="#/setup">Setup</a>
             <a className="nav-item nav-link px-3" href="#/myList">My List</a>
             </div>
         </div>

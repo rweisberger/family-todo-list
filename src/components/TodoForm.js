@@ -15,7 +15,7 @@ function TodoForm({addTodo}){
             console.log({task: task, assignedTo: assignedTo, isCompleted: false});
             let newTask = {task: task, assignedTo: assignedTo, isCompleted: false};
             addTodo(newTask);
-            ctx.todos.push(newTask);
+            ctx.activeUser.todos.push(newTask);
             setTask(''); //setting the value back to empty
             setAssignedTo('');
             console.log(ctx);

@@ -15,13 +15,12 @@ function Todo({todo, index, remove}) {
             <td>{todo.assignedTo}</td>
             <td><button className="btn btn-success" onClick={() => remove(index)}>✓</button></td>
             </tr>
-       
     )
   }
 
   function MyList() {
     let ctx = useContext(UserContext);
-    const [todos, setTodos] = useState(ctx.todos)
+    const [todos, setTodos] = useState(ctx.activeUser.todos)
     //     {
     //         task: 'go to bank',
     //         assignedTo: 'Bill',
@@ -52,7 +51,7 @@ function Todo({todo, index, remove}) {
     }
     return (
     <div className="container">
-    <h1 className="display-3 text-center">Todo List</h1>
+    <h1 className="display-3 text-center">{ctx.activeUser.listName ? ctx.activeUser.listName : Todo}</h1>
         <table className="table">
         <thead className='bg-info'>
             <tr>
