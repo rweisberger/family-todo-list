@@ -2,6 +2,7 @@ import './App.css';
 import React from 'react';
 import { HashRouter, Routes, Route } from "react-router-dom";
 import UserContext from "./components/Context";
+import Protected from './components/Protected';
 import Navbar from './components/navbar';
 import MyList from './components/MyList';
 import CreateAccount from './components/CreateAccount';
@@ -25,8 +26,21 @@ return (
             <Route path="/" exact element={< Home/>} />
             <Route path="/createAccount" element={<CreateAccount />}/>
             <Route path="/login" element={<Login />}/>
-            <Route path="/setup" element={<Setup />}/>
-            <Route path="/myList" element={<MyList />}/>
+            <Route path='/' element={<Home />} />
+            <Route path='/myList'element={
+                <Protected>
+                    < MyList/>
+                </Protected>
+                }
+            />
+             <Route path='/setup'element={
+                <Protected>
+                    < Setup/>
+                </Protected>
+                }
+            />
+            {/* <Route path="/setup" element={<Setup />}/>
+            <Route path="/myList" element={<MyList />}/> */}
         </Routes>
     </UserContext.Provider>
 </HashRouter>

@@ -6,6 +6,7 @@ function TodoForm({addTodo}){
     const [task, setTask] = useState('');
     const [assignedTo, setAssignedTo] = useState('');
     const ctx = useContext(UserContext);
+    const helpers = ctx.activeUser.helpers;
 
     const createTodo = (e) => {
         if(!task || !assignedTo) {
@@ -33,16 +34,18 @@ function TodoForm({addTodo}){
                         placeholder="Add a new task"
                         onChange={e => setTask(e.currentTarget.value)} 
                         />
-                    <div className="input-group">
-                        <select className="custom-select" id="inputGroupSelect04" value={assignedTo} onChange={e=> setAssignedTo(e.currentTarget.value)}>
-                            <option value="">Who will get it done?...</option>
-                            <option value="Bill">Bill</option>
-                            <option value="Rachel">Rachel</option>
+                    {(helpers.length !== 0) ? (
+                        <div className="input-group">
+                            <select className="custom-select" id="inputGroupSelect04" value={assignedTo} onChange={e=> setAssignedTo(e.currentTarget.value)}>
+                                <option value="">Who will get it done?...</option>
+                                {helpers.map((helper, i) => <option value={helper}>{helper}</option>)}
                         </select>
                         <div className="input-group-append">
                             <button type="submit" className="btn btn-outline-warning" onClick={e=> createTodo(e)}>Add</button>
                         </div>
-                    </div>
+                        </div>
+                        ) : (<></>)
+                    }
                 </div>
             </form>)
 };
