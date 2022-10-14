@@ -16,8 +16,8 @@ const findUser = () => {
            data.forEach(user => {
                 if(loginEmail === user.email && loginPassword === user.password) {
                         console.log('user match');
-                        ctx.activeUser = user;
-                        navigate('/myList');
+                        ctx.setActiveUser(user);
+                        navigate('/setup');
                         console.log(ctx)
                 } else {
                     alert('Incorrect username and password combinations- please try again!')

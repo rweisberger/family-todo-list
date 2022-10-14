@@ -21,22 +21,7 @@ function Todo({todo, index, remove}) {
   function MyList() {
     let ctx = useContext(UserContext);
     const [todos, setTodos] = useState(ctx.activeUser.todos)
-    //     {
-    //         task: 'go to bank',
-    //         assignedTo: 'Bill',
-    //         isCompleted: false,   
-    //     },
-    //     {
-    //         task: 'wash sheets',
-    //         assignedTo: 'Rachel',
-    //         isCompleted: false,
-    //     },
-    //     {
-    //         task: 'find childcare',
-    //         assignedTo: 'Nora',
-    //         isCompleted: false,
-    //     },
-    // ]);
+
     const addTodo = (newTask) => {
         console.log(newTask)
         const newTodos = [...todos, newTask];
@@ -51,7 +36,11 @@ function Todo({todo, index, remove}) {
     }
     return (
     <div className="container">
-    <h1 className="display-3 text-center">{ctx.activeUser.listName ? ctx.activeUser.listName : Todo}</h1>
+    {ctx.activeUser.listName ? (   
+        <h1 className="display-5 text-center"> {ctx.activeUser.listName} </h1>
+        ) : (<h1 className="display-5 text-center"> To Do: </h1>
+        )
+    }
         <table className="table">
         <thead className='bg-info'>
             <tr>

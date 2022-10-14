@@ -22,7 +22,6 @@ function TodoForm({addTodo}){
             console.log(ctx);
         }
     }
-
     
     return (
             <form> 
@@ -38,7 +37,7 @@ function TodoForm({addTodo}){
                         <div className="input-group">
                             <select className="custom-select" id="inputGroupSelect04" value={assignedTo} onChange={e=> setAssignedTo(e.currentTarget.value)}>
                                 <option value="">Who will get it done?...</option>
-                                {helpers.map((helper, i) => <option value={helper}>{helper}</option>)}
+                                {helpers.map((helper, i) => <option value={helper} key={i}>{helper}</option>)}
                         </select>
                         <div className="input-group-append">
                             <button type="submit" className="btn btn-outline-warning" onClick={e=> createTodo(e)}>Add</button>
@@ -47,6 +46,7 @@ function TodoForm({addTodo}){
                         ) : (<></>)
                     }
                 </div>
-            </form>)
+            </form>
+    )
 };
 export default TodoForm;

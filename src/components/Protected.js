@@ -1,13 +1,13 @@
 import { Navigate } from "react-router-dom";
 import { useContext } from "react";
-import UserContext from "./Context";
 
+import UserContext from "./Context";
 
 const Protected = ({ children }) => {
     let ctx = useContext(UserContext);
 
- if (!ctx.activeUser) {
- return <Navigate to="/login" />;
+ if (ctx.activeUser == null ) {
+ return <Navigate to="/" />;
  } 
  return children;
 };
