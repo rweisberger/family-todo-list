@@ -13,17 +13,19 @@ const Login = () => {
 const findUser = () => {
     console.log(loginEmail, loginPassword)
     let data = ctx.users;
-           data.forEach(user => {
+    
+            if(data.find(user => loginEmail === user.email && loginPassword === user.password) === undefined) {
+                    alert('Username and password combination not found.')
+                } 
+            data.forEach(user => {
                 if(loginEmail === user.email && loginPassword === user.password) {
                         console.log('user match');
                         ctx.setActiveUser(user);
                         navigate('/setup');
                         console.log(ctx)
-                } else {
-                    alert('Incorrect username and password combinations- please try again!')
                 }
-            })
-}
+            })        
+        }
 
     return(
     // <div className="container mt-5">

@@ -1,22 +1,27 @@
 import React from "react";
 import { useState, useContext } from "react";
+import { useNavigate } from "react-router-dom";
 import UserContext from "./Context";
 
 const CreateAccount = () => {
     const [name, setName] = useState('');
     const [email, setEmail] = useState(''); 
     const [password, setPassword] = useState('');
+    const navigate = useNavigate();
     const ctx = useContext(UserContext);
 
 
 const handleCreate = () => {
+
     console.log(name, email, password);
     if(!name) return;
     if(!email) return;
     if(!password) return;
     ctx.users.push({name, email, password,});
     alert('Successfully created account!');
-    console.log(ctx.users)
+    console.log(ctx.users);
+    navigate('/login')
+
 }
 
     return(
