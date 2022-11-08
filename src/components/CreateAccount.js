@@ -17,7 +17,7 @@ const handleCreate = () => {
     if(!name) return;
     if(!email) return;
     if(!password) return;
-    ctx.users.push({name, email, password,});
+    ctx.users.push({name, email, password, listName:'', todos:[], helpers:[]});
     alert('Successfully created account!');
     console.log(ctx.users);
     navigate('/login')
