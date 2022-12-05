@@ -1,4 +1,6 @@
 import React from "react";
+import axios from "axios";
+
 import {useState, useContext} from "react"; 
 import { useNavigate } from "react-router-dom";
 
@@ -12,15 +14,29 @@ const Login = () => {
 
 const findUser = () => {
     console.log(loginEmail, loginPassword)
-    let data = ctx.users;
-           data.forEach(user => {
-                if(loginEmail === user.email && loginPassword === user.password) {
-                        console.log('user match');
-                        ctx.setActiveUser(user);
-                        navigate('/setup');
-                        console.log(ctx)
-                }
-            })
+    // let data = ctx.users;
+    //        data.forEach(user => {
+    //             if(loginEmail === user.email && loginPassword === user.password) {
+    //                     console.log('user match');
+    //                     ctx.setActiveUser(user);
+    //                     navigate('/setup');
+    //                     console.log(ctx)
+    //             }
+    //         })
+    axios.post('/login', {
+        loginEmail,
+        loginPassword
+      })
+      .then(function (response) {
+        console.log(response);
+        alert('Successfully created account!');
+        navigate('/login')
+      })
+      .catch(function (error) {
+        console.log(error.response.data);
+        alert(error.response.data);
+
+      });
 }
 
     return(

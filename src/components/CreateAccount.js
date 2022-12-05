@@ -1,27 +1,38 @@
 import React from "react";
+import axios from "axios";
+
 import { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
-import UserContext from "./Context";
+
 
 const CreateAccount = () => {
     const [name, setName] = useState('');
     const [email, setEmail] = useState(''); 
     const [password, setPassword] = useState('');
     const navigate = useNavigate();
-    const ctx = useContext(UserContext);
 
 
 const handleCreate = () => {
-
     console.log(name, email, password);
     if(!name) return;
     if(!email) return;
     if(!password) return;
-    ctx.users.push({name, email, password, listName:'', todos:[], helpers:[]});
-    alert('Successfully created account!');
-    console.log(ctx.users);
-    navigate('/login')
 
+    axios.post('/account/newUser', {
+        email,
+        password,
+        name
+      })
+      .then(function (response) {
+        console.log(response);
+        alert('Successfully created account!');
+        navigate('/login')
+      })
+      .catch(function (error) {
+        console.log(error.response.data);
+        alert(error.response.data);
+
+      }); 
 }
 
     return(
@@ -35,7 +46,7 @@ const handleCreate = () => {
                     <input type="email" className="form-control" id="email" placeholder="Enter email" value={email} onChange={e => setEmail(e.currentTarget.value)}/><br/>
                     Password<br/> 
                     <input type="password" className="form-control" id="password" placeholder="Enter password" value={password} onChange={e => setPassword(e.currentTarget.value)}/><br/>
-                    <button type="submit" className="btn btn-primary" onClick={handleCreate}>Login</button>
+                    <button type="submit" className="btn btn-primary" onClick={handleCreate}>Create Account</button>
                 </form>
             </div>
         </div>

@@ -14,16 +14,8 @@ const Setup = () => {
         e.preventDefault();
         console.log(helper, newListName);        
         activeUser.listName=newListName;
-
-        // console.log(ctx.activeUser)
         activeUser.helpers.push(helper)
-
-        // if(ctx.activeUser.listName !== newListName){
-        //     ctx.activeUser.helpers.listName = newListName;
-        // }
-
         setHelper('')
-        // console.log(ctx);
     }
 
     return(
