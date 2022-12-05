@@ -15,8 +15,9 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 function App() {
     let [activeUser, setActiveUser] = useState(null);
-    // let [accessEmail, setAccessEmail] = useState(null);
-    let context = {users:[{name:'Rachel', email:'rachel@gmail.com', password:'secret', listName:'', todos:[], helpers:[]}], activeUser, setActiveUser};
+    let [accessEmail, setAccessEmail] = useState(null);
+    let [lists, setLists] = useState(null);
+    let context = {activeUser, setActiveUser, accessEmail, setAccessEmail, lists, setLists};
 
 
 return (

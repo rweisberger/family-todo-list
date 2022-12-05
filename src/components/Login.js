@@ -7,36 +7,33 @@ import { useNavigate } from "react-router-dom";
 import UserContext from "./Context";
 
 const Login = () => {
-    const [loginEmail, setLoginEmail] = useState(''); 
-    const [loginPassword, setLoginPassword] = useState('');
+    const [email, setEmail] = useState(''); 
+    const [password, setPassword] = useState('');
     const navigate = useNavigate();
-    let ctx = useContext(UserContext);
+    let { setActiveUser, accessEmail, setAccessEmail, setLists } = useContext(UserContext);
 
 const findUser = () => {
-    console.log(loginEmail, loginPassword)
-    // let data = ctx.users;
-    //        data.forEach(user => {
-    //             if(loginEmail === user.email && loginPassword === user.password) {
-    //                     console.log('user match');
-    //                     ctx.setActiveUser(user);
-    //                     navigate('/setup');
-    //                     console.log(ctx)
-    //             }
-    //         })
+    // console.log(email, password)
     axios.post('/login', {
-        loginEmail,
-        loginPassword
+        email,
+        password
       })
       .then(function (response) {
         console.log(response);
-        alert('Successfully created account!');
-        navigate('/login')
+        const {name, email, lists} = response.data
+        console.log("name",name, "email", email, "lists", lists)
+        setActiveUser(name);
+        setAccessEmail(accessEmail);
+        setLists(lists)
+        // navigate('/setup')
       })
       .catch(function (error) {
-        console.log(error.response.data);
-        alert(error.response.data);
-
+        console.log(error);
+        alert(error);
       });
+
+      setEmail('');
+      setPassword('');
 }
 
     return(
@@ -46,9 +43,9 @@ const findUser = () => {
                 <h5 className="card-title">Login</h5>
                 <form>
                     Email address<br/> 
-                    <input type="email" className="form-control" id="email" placeholder="Enter email" value={loginEmail} onChange={e => setLoginEmail(e.currentTarget.value)}/><br/>
+                    <input type="email" className="form-control" id="email" placeholder="Enter email" value={email} onChange={e => setEmail(e.currentTarget.value)}/><br/>
                     Password<br/> 
-                    <input type="password" className="form-control" id="password" placeholder="Enter password" value={loginPassword} onChange={e => setLoginPassword(e.currentTarget.value)}/><br/>
+                    <input type="password" className="form-control" id="password" placeholder="Enter password" value={password} onChange={e => setPassword(e.currentTarget.value)}/><br/>
                     <button type="submit" className="btn btn-warning" onClick={findUser}>Login</button>
                 </form>
             </div>
