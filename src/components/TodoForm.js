@@ -1,25 +1,29 @@
+import axios from "axios";
 import React from "react";
 import { useState, useContext } from "react";
 import UserContext from "./Context";
 
 function TodoForm({addTodo}){
-    const [task, setTask] = useState('');
+    const [description, setDescription] = useState('');
     const [assignedTo, setAssignedTo] = useState('');
-    const {lists, activeUser} = useContext(UserContext);
-    const helpers = ctx.activeUser.helpers;
+    const {lists, setLists, accessEmail} = useContext(UserContext);
+    const {helpers, listName} = lists[0];
 
     const createTodo = (e) => {
-        if(!task || !assignedTo) {
+        if(!description || !assignedTo) {
             return;
         } else {
             e.preventDefault();
-            console.log({task: task, assignedTo: assignedTo, isCompleted: false});
-            let newTask = {task: task, assignedTo: assignedTo, isCompleted: false};
-            addTodo(newTask);
-            ctx.activeUser.todos.push(newTask);
-            setTask(''); //setting the value back to empty
+            addTodo({ description: description, assignedTo: assignedTo})
+            setDescription(''); //setting the value back to empty
             setAssignedTo('');
-            console.log(ctx);
+            // e.preventDefault();
+            // console.log({task: task, assignedTo: assignedTo, isCompleted: false});
+            // let newTask = {task: task, assignedTo: assignedTo, isCompleted: false};
+            // addTodo(newTask);
+            // ctx.activeUser.todos.push(newTask);
+            // setTask(''); //setting the value back to empty
+            // setAssignedTo('');
         }
     }
     
@@ -29,9 +33,9 @@ function TodoForm({addTodo}){
                     <input
                         type="text"
                         className="form-control"
-                        value={task}
+                        value={description}
                         placeholder="Add a new task"
-                        onChange={e => setTask(e.currentTarget.value)} 
+                        onChange={e => setDescription(e.currentTarget.value)} 
                         />
                     {(helpers.length !== 0) ? (
                         <div className="input-group">

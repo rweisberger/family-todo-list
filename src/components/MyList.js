@@ -22,19 +22,32 @@ function Todo({todo, index, remove}) {
   }
 
   function MyList() {
-    let {activeUser, lists, setLists} = useContext(UserContext);
+    let {accessEmail : email, lists, setLists} = useContext(UserContext);
     const [todos, setTodos] = useState(lists[0].todos)
-    console.log('lists',lists[0], 'todos', todos)
+    // console.log('lists',lists[0], 'todos', todos)
 
     const addTodo = (newTask) => {
         console.log(newTask)
-        // axios.post('/create/task', {
-        //     email, listName, description, assignedTo
-        // })
-        // const newTodos = [...todos, newTask];
-        // setTodos(newTodos);  // set todos to new todo list with added value
-        // console.log(newTodos);
+        let { description, assignedTo } = newTask;
+        let listName = lists[0].listName
+        // let email = accessEmail;
+        console.log(email, listName, description, assignedTo);
+        axios.post('/create/task', { 
+            email, 
+            listName, 
+            description, 
+            assignedTo 
+        })
+        .then(function(response){
+            setLists(response.data.docs.lists);
+            setTodos(response.data.docs.lists[0].todos);
+        })
+        .catch(function (error) {
+            console.log(error);
+            alert(error);
+        });
     }
+
     const removeTodo = index => {
         let taskId = index; 
 
@@ -54,7 +67,7 @@ function Todo({todo, index, remove}) {
     }
     return (
     <div className="container">
-    {lists.listName ? (   
+    {lists.listName && todos? (   
         <h1 className="display-5 text-center"> {lists.listName} </h1>
         ) : (<h1 className="display-5 text-center"> To Do: </h1>
         )
@@ -71,7 +84,7 @@ function Todo({todo, index, remove}) {
             {todos.map((todo,i) => <Todo index={todo.taskId} key={i} todo={todo} remove={removeTodo}/>)}
         </tbody>
         </table>
-        {/* <TodoForm addTodo={addTodo}/> */}
+        <TodoForm addTodo={addTodo}/>
     </div>
     )
   }
