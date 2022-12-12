@@ -10,7 +10,7 @@ const Login = () => {
     const [email, setEmail] = useState(''); 
     const [password, setPassword] = useState('');
     const navigate = useNavigate();
-    let { setActiveUser, accessEmail, setAccessEmail, setLists } = useContext(UserContext);
+    let { activeUser, setActiveUser, accessEmail, setAccessEmail, setLists } = useContext(UserContext);
 
 const findUser = () => {
     // console.log(email, password)
@@ -23,9 +23,9 @@ const findUser = () => {
         const {name, email, lists} = response.data
         console.log("name",name, "email", email, "lists", lists)
         setActiveUser(name);
-        setAccessEmail(accessEmail);
-        setLists(lists)
-        // navigate('/setup')
+        setAccessEmail(email);
+        setLists(lists);
+        navigate('/setup');
       })
       .catch(function (error) {
         console.log(error);
@@ -35,7 +35,7 @@ const findUser = () => {
       setEmail('');
       setPassword('');
 }
-
+     
     return(
     // <div className="container mt-5">
         <div className="card bg-info m-5">

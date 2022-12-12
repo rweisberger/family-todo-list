@@ -5,7 +5,7 @@ import UserContext from "./Context";
 function TodoForm({addTodo}){
     const [task, setTask] = useState('');
     const [assignedTo, setAssignedTo] = useState('');
-    const ctx = useContext(UserContext);
+    const {lists, activeUser} = useContext(UserContext);
     const helpers = ctx.activeUser.helpers;
 
     const createTodo = (e) => {
