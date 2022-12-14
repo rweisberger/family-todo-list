@@ -24,7 +24,11 @@ const findUser = () => {
         setActiveUser(name);
         setAccessEmail(email);
         setLists(lists);
-        navigate('/listsHome');
+        if(lists.length > 0){
+            navigate('/listsHome')
+        } else {
+            navigate('/setup')
+        };
       })
       .catch(function (error) {
         console.log(error);

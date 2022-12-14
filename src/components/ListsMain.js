@@ -10,13 +10,20 @@ let { lists } = useContext(UserContext);
 let [displayedLists, setDisplayedLists] = useState(lists);
 
 const closeCard = (e) => {
-    let newDisplay = (displayedLists.filter(displayedList => displayedList.listId !== e.target.id));
+    let newDisplay = displayedLists.filter(displayedList => displayedList.listId !== e.target.id);
+    console.log(newDisplay)
     setDisplayedLists(newDisplay);
 };
 
 const openCard = (e) => {
-    let found = lists.find(list => list.listId === e.target.id);
-    setDisplayedLists([found,...displayedLists]);
+    console.log('open card', displayedLists.find(displayedList => displayedList.listId === e.target.id))
+    if(displayedLists.find(displayedList => displayedList.listId === e.target.id) !== undefined){
+        console.log('list already open')
+       return 
+    } else {
+        let found = lists.find(list => list.listId === e.target.id);
+        setDisplayedLists([found,...displayedLists]);
+    }
 };
 
     return (
