@@ -10,10 +10,9 @@ const Login = () => {
     const [email, setEmail] = useState(''); 
     const [password, setPassword] = useState('');
     const navigate = useNavigate();
-    let { activeUser, setActiveUser, accessEmail, setAccessEmail, setLists } = useContext(UserContext);
+    let { setActiveUser, setAccessEmail, setLists } = useContext(UserContext);
 
 const findUser = () => {
-    // console.log(email, password)
     axios.post('/login', {
         email,
         password
@@ -25,7 +24,7 @@ const findUser = () => {
         setActiveUser(name);
         setAccessEmail(email);
         setLists(lists);
-        navigate('/setup');
+        navigate('/listsHome');
       })
       .catch(function (error) {
         console.log(error);
@@ -37,7 +36,6 @@ const findUser = () => {
 }
      
     return(
-    // <div className="container mt-5">
         <div className="card bg-info m-5">
             <div className="card-body">
                 <h5 className="card-title">Login</h5>
@@ -50,7 +48,6 @@ const findUser = () => {
                 </form>
             </div>
         </div>
-    // </div>
     );
 }
 

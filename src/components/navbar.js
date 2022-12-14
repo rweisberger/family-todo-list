@@ -19,8 +19,7 @@ import UserContext from "./Context";
                 {activeUser ? (            
                 <div className="navbar-nav ml-auto">  
                 <a className="nav-item nav-link px-3" href="#/listsHome">My Lists</a>
-                <a className="nav-item nav-link px-3" href="#/setup">Setup</a>
-                {/* <a className="nav-item nav-link px-3" href="#/myList">My List</a>   */}
+                <a className="nav-item nav-link px-3" href="#/setup">Add New List</a>
                 <button type="button" className="btn btn-outline-light" onClick={logout}>Logout</button>          
                 </div>
                 ) : (
