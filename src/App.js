@@ -8,6 +8,7 @@ import Navbar from './components/Navbar';
 import MyList from './components/MyList';
 import CreateAccount from './components/CreateAccount';
 import Login from './components/Login';
+import ListsMain from './components/ListsMain';
 import Setup from './components/Setup';
 import Home from './components/Home';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -28,9 +29,15 @@ return (
             <Route path="/" exact element={<Home/>} />
             <Route path="/createAccount" element={<CreateAccount />}/>
             <Route path="/login" element={<Login />}/>
-            <Route path='/myList'element={
+            {/* <Route path='/myList'element={
                 <Protected>
                     < MyList/>
+                </Protected>
+                }
+            /> */}
+            <Route path='/listsHome'element={
+                <Protected>
+                    < ListsMain/>
                 </Protected>
                 }
             />

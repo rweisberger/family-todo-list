@@ -11,7 +11,7 @@ const Setup = () => {
     const [helper, setHelper] = useState([]);
 
     // const navigate = useNavigate();
-    let {activeUser, accessEmail, lists} = useContext(UserContext);
+    let { accessEmail } = useContext(UserContext);
     
     const createList = (e) => { 
         console.log(accessEmail, newListName)

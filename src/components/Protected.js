@@ -3,7 +3,7 @@ import { useContext } from "react";
 
 import UserContext from "./Context";
 
-const Protected = ({ children }) => {
+const ActiveUserProtected = ({ children }) => {
     let {activeUser} = useContext(UserContext);
 
  if (activeUser == null ) {
@@ -12,4 +12,4 @@ const Protected = ({ children }) => {
  return children;
 };
 
-export default Protected;
+export default ActiveUserProtected;

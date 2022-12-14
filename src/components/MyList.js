@@ -1,7 +1,9 @@
 import React from 'react';
 import axios from "axios";
 
-import {useState, useContext} from 'react';
+import {useState, useEffect, useContext} from 'react';
+import { useNavigate } from "react-router-dom";
+
 
 import '../App.css';
 import TodoForm from './TodoForm';
@@ -12,7 +14,6 @@ function Todo({todo, index, remove}) {
         remove(index);
     }
     return (
-    
             <tr>
             <th scope="row" onClick={handle}>{todo.description} </th>
             <td>{todo.assignedTo}</td>
@@ -23,8 +24,8 @@ function Todo({todo, index, remove}) {
 
   function MyList() {
     let {accessEmail : email, lists, setLists} = useContext(UserContext);
-    const [todos, setTodos] = useState(lists[0].todos)
-    // console.log('lists',lists[0], 'todos', todos)
+    const [todos, setTodos] = useState();
+    const navigate = useNavigate();
 
     const addTodo = (newTask) => {
         console.log(newTask)
@@ -61,17 +62,15 @@ function Todo({todo, index, remove}) {
             console.log(error.response.data);
             alert(error.response.data);
           }); 
-        // let currentList = [...todos];
-        // console.log(index);
-        // currentList.splice(index,1); // removes the item from the current list
     }
     return (
     <div className="container">
-    {lists.listName && todos? (   
-        <h1 className="display-5 text-center"> {lists.listName} </h1>
+    {/* {lists && lists[0].listName ? (    */}
+    {/* { lists. length > 0 ? (
+        <h1 className="display-5 text-center"> {lists[0].listName} </h1>
         ) : (<h1 className="display-5 text-center"> To Do: </h1>
         )
-    }
+    } */}
         <table className="table">
         <thead className='bg-info'>
             <tr>
@@ -80,9 +79,15 @@ function Todo({todo, index, remove}) {
             <th scope="col">Status</th>
             </tr>
         </thead>
-        <tbody>
-            {todos.map((todo,i) => <Todo index={todo.taskId} key={i} todo={todo} remove={removeTodo}/>)}
-        </tbody>
+        {todos ? (
+                <tbody>
+                    {todos.map((todo,i) => <Todo index={todo.taskId} key={i} todo={todo} remove={removeTodo}/>)}
+                </tbody>
+            ) : (
+                <tbody></tbody>
+            )
+        }
+        
         </table>
         <TodoForm addTodo={addTodo}/>
     </div>
