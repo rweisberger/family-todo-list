@@ -1,7 +1,7 @@
 import React from 'react';
 import axios from "axios";
 
-import {useState, useEffect, useContext} from 'react';
+import {useState, useContext} from 'react';
 
 import '../App.css';
 import TodoForm from './TodoForm';
@@ -20,25 +20,29 @@ function Todo({todo, index, remove}) {
     )
   };
 
-  function MyList() {
-    let {accessEmail : email, lists, setLists} = useContext(UserContext);
-    const [todos, setTodos] = useState();
+  function MyList(props) {
+    let {accessEmail : email, lists, setLists} = useContext(UserContext);   
+    let listId = props.listId; 
+    const [todos, setTodos] = useState((lists.find(list => list.listId === listId)).todos);
+
+   console.log(todos)
 
     const addTodo = (newTask) => {
         console.log(newTask)
         let { description, assignedTo } = newTask;
-        let listName = lists[0].listName
-        // let email = accessEmail;
-        console.log(email, listName, description, assignedTo);
+        console.log(email, listId, description, assignedTo);
         axios.post('/create/task', { 
             email, 
-            listName, 
+            listId, 
             description, 
             assignedTo 
         })
         .then(function(response){
-            setLists(response.data.docs.lists);
-            setTodos(response.data.docs.lists[0].todos);
+            const { lists } = response.data.docs
+            // const { data: { docs: { lists }}} = response
+            setLists(lists);
+            let listTodos = (response.data.docs.lists.find(list => list.listId = listId)).todos;
+            setTodos(listTodos);
         })
         .catch(function (error) {
             console.log(error);
@@ -53,7 +57,7 @@ function Todo({todo, index, remove}) {
         .then(function (response) {
             console.log(response.data);
             setLists(response.data);
-            setTodos(response.data[0].todos);
+            setTodos((response.data.find(list => list.listId === listId).todos));
           })
           .catch(function (error) {
             console.log(error.response.data);

@@ -9,8 +9,8 @@ import UserContext from "./Context";
 const Setup = () => {
     const [newListName, setNewListName] = useState(''); 
     const [helper, setHelper] = useState([]);
+    const [listId, setListId] = useState('');
 
-    // const navigate = useNavigate();
     let { accessEmail } = useContext(UserContext);
     
     const createList = (e) => { 
@@ -22,7 +22,8 @@ const Setup = () => {
             email, listName
           })
           .then(function (response) {
-            console.log(response);
+            console.log(response.data.docs);
+            setListId(response.data.docs);
             // setState to deactivate input and show name
           })
           .catch(function (error) {
@@ -33,11 +34,10 @@ const Setup = () => {
 
     const addHelper = (e) => {
         e.preventDefault();
-        console.log(helper, newListName);   
+        console.log(helper, listId);   
         let email = accessEmail;
-        let listName = newListName     
         axios.post('/create/list/addHelpers', {
-            email, listName, helper
+            email, listId, helper
           })
           .then(function (response) {
             console.log(response);
