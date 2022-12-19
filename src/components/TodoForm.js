@@ -58,7 +58,7 @@ function TodoForm({listId, addTodo}){
                         )
                     }
                     <br/><button type="submit" className="btn btn-outline-danger mr-3 disabled" >Delete List</button>
-                    <button type="submit" className="btn btn-outline-primary disabled" >Setup</button>
+                    <button type="submit" className="btn btn-outline-primary float-right disabled" >Setup</button>
             </form>
     )
 };

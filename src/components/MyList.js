@@ -37,7 +37,7 @@ function Todo({todo, index, remove}) {
         .then(function(response){
             const { lists } = response.data.docs
             setLists(lists);
-            let listTodos = (response.data.docs.lists.find(list => list.listId = listId)).todos;
+            let listTodos = (lists.find(list => list.listId = listId)).todos;
             setTodos(listTodos);
         })
         .catch(function (error) {
@@ -49,7 +49,7 @@ function Todo({todo, index, remove}) {
     const removeTodo = index => {
         let taskId = index; 
 
-        axios.post('/delete/task', { taskId })
+        axios.delete(`/delete/task/${taskId}`)
         .then(function (response) {
             console.log(response.data);
             setLists(response.data);

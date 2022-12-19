@@ -20,6 +20,7 @@ useEffect(()=>{
       .catch(function (error) {
           console.log(error);
       })
+      // eslint-disable-next-line
   },[])
 
 const closeCard = (e) => {
