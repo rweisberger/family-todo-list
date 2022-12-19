@@ -25,12 +25,9 @@ function Todo({todo, index, remove}) {
     let listId = props.listId; 
     const [todos, setTodos] = useState((lists.find(list => list.listId === listId)).todos);
 
-   console.log(todos)
-
     const addTodo = (newTask) => {
         console.log(newTask)
-        let { description, assignedTo } = newTask;
-        console.log(email, listId, description, assignedTo);
+        let { listId, description, assignedTo } = newTask;
         axios.post('/create/task', { 
             email, 
             listId, 
@@ -39,7 +36,6 @@ function Todo({todo, index, remove}) {
         })
         .then(function(response){
             const { lists } = response.data.docs
-            // const { data: { docs: { lists }}} = response
             setLists(lists);
             let listTodos = (response.data.docs.lists.find(list => list.listId = listId)).todos;
             setTodos(listTodos);
@@ -76,14 +72,14 @@ function Todo({todo, index, remove}) {
         </thead>
         {todos ? (
                 <tbody>
-                    {todos.map((todo,i) => <Todo index={todo.taskId} key={i} todo={todo} remove={removeTodo}/>)}
+                    {todos.map((todo,i) => <Todo  index={todo.taskId} key={i} todo={todo} remove={removeTodo}/>)}
                 </tbody>
             ) : (
                 <tbody></tbody>
             )
         }
         </table>
-        <TodoForm addTodo={addTodo}/>
+        <TodoForm listId={listId} addTodo={addTodo}/>
     </div>
     )
   };

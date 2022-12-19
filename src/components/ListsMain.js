@@ -1,13 +1,26 @@
 import React from "react";
+import axios from "axios";
 
-import { useContext, useState } from "react";
+import { useContext, useState, useEffect } from "react";
 import UserContext from "./Context";
 import MyList from "./MyList";
 
 
 const ListsMain = () => {
-let { lists } = useContext(UserContext);
+let { accessEmail, lists, setLists } = useContext(UserContext);
 let [displayedLists, setDisplayedLists] = useState(lists);
+
+useEffect(()=>{
+    axios.get(`/lists/${accessEmail}`)
+      .then(function (response) {
+        const { data } = response
+      setLists(data);
+      setDisplayedLists(data);
+      })
+      .catch(function (error) {
+          console.log(error);
+      })
+  },[])
 
 const closeCard = (e) => {
     let newDisplay = displayedLists.filter(displayedList => displayedList.listId !== e.target.id);
