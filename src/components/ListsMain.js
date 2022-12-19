@@ -40,7 +40,7 @@ const openCard = (e) => {
 
     return (
         <div className="container py-3">
-            {/* here I am mapping through all the lists that exist in the database to make sure thaty they are accessible to the user */}
+            {/* here I am mapping through all the lists that exist in the database to make sure that they are accessible to the user */}
             {lists.map((list) => <button type="button" key={list.listId} id={list.listId} className="btn btn-outline-success" onClick={e => openCard(e)}>{list.listName}</button>
             )}
             {/* here I am mapping through all of the lists that are currently being displayed */}
