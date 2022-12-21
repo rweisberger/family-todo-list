@@ -22,11 +22,16 @@ function Todo({todo, index, remove}) {
 
   function MyList(props) {
     let {accessEmail : email, lists, setLists} = useContext(UserContext);   
-    let listId = props.listId; 
-    const [todos, setTodos] = useState((lists.find(list => list.listId === listId)).todos);
+    console.log('mylist props', props)
+    // I think this is causing problems
+    const { listId }= props; 
+    const [todos, setTodos] = useState((lists.find(list => list.listId === props.listId))?.todos);
+    console.log("todos", todos);
+    console.log('lists', lists)
+    
 
     const addTodo = (newTask) => {
-        console.log(newTask)
+        console.log("new task", newTask)
         let { listId, description, assignedTo } = newTask;
         axios.post('/create/task', { 
             email, 
@@ -37,7 +42,7 @@ function Todo({todo, index, remove}) {
         .then(function(response){
             const { lists } = response.data.docs
             setLists(lists);
-            let listTodos = (lists.find(list => list.listId = listId)).todos;
+            let listTodos = (lists.find(list => list.listId === listId)).todos;
             setTodos(listTodos);
         })
         .catch(function (error) {
@@ -51,12 +56,10 @@ function Todo({todo, index, remove}) {
 
         axios.delete(`/delete/task/${taskId}`)
         .then(function (response) {
-            console.log(response.data);
             setLists(response.data);
             setTodos((response.data.find(list => list.listId === listId).todos));
           })
           .catch(function (error) {
-            console.log(error.response.data);
             alert(error.response.data);
           }); 
     }

@@ -6,7 +6,7 @@ function TodoForm({listId, addTodo}){
     const [description, setDescription] = useState('');
     const [assignedTo, setAssignedTo] = useState('');
     const { lists } = useContext(UserContext);
-    const helpers = lists.find(list => list.listId === listId).helpers
+    const helpers = lists.find(list => list.listId === listId)?.helpers
 
     const createTodo = (e) => {
         if(!description || !assignedTo) {
@@ -21,7 +21,7 @@ function TodoForm({listId, addTodo}){
     
     return (
             <form> 
-                    {helpers.length > 0 ? (
+                    {helpers?.length > 0 ? (
                         // what the difference between input and form group?
                         <div className="input-group">
                             <input

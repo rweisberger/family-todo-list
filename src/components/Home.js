@@ -24,7 +24,7 @@ const Home = () => {
                 <p className="text-center">Setup a list or go to your list!</p>
                 <p className="lead text-center">
                     <a className="btn btn-warning btn-lg px-5 mr-3" href="#/setup" role="button">Setup</a>            
-                    <a className="btn btn-warning btn-lg" href="#/myList" role="button">My List</a>          
+                    <a className="btn btn-warning btn-lg" href="#/listsHome" role="button">My List</a>          
                 </p>
             </div>
         )

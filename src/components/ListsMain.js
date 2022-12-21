@@ -10,6 +10,7 @@ const ListsMain = () => {
 let { accessEmail, lists, setLists } = useContext(UserContext);
 let [displayedLists, setDisplayedLists] = useState(lists);
 
+
 useEffect(()=>{
     axios.get(`/lists/${accessEmail}`)
       .then(function (response) {
@@ -29,7 +30,6 @@ const closeCard = (e) => {
 };
 
 const openCard = (e) => {
-    console.log('open card', displayedLists.find(displayedList => displayedList.listId === e.target.id))
     if(displayedLists.find(displayedList => displayedList.listId === e.target.id) !== undefined){
         console.log('list already open')
        return 
