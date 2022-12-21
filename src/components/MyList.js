@@ -22,13 +22,8 @@ function Todo({todo, index, remove}) {
 
   function MyList(props) {
     let {accessEmail : email, lists, setLists} = useContext(UserContext);   
-    console.log('mylist props', props)
-    // I think this is causing problems
-    const { listId }= props; 
-    const [todos, setTodos] = useState((lists.find(list => list.listId === props.listId))?.todos);
-    console.log("todos", todos);
-    console.log('lists', lists)
-    
+    const { listId } = props; 
+    const [todos, setTodos] = useState((lists.find(list => list.listId === props.listId))?.todos);    
 
     const addTodo = (newTask) => {
         console.log("new task", newTask)

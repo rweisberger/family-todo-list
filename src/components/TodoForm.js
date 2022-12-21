@@ -1,6 +1,7 @@
 import React from "react";
 import { useState, useContext } from "react";
 import UserContext from "./Context";
+import DeleteList from "./DeleteList";
 
 function TodoForm({listId, addTodo}){
     const [description, setDescription] = useState('');
@@ -57,7 +58,7 @@ function TodoForm({listId, addTodo}){
                             </div>
                         )
                     }
-                    <br/><button type="submit" className="btn btn-outline-danger mr-3 disabled" >Delete List</button>
+                    <br/><DeleteList listId={listId}/>
                     <button type="submit" className="btn btn-outline-primary float-right disabled" >Setup</button>
             </form>
     )
