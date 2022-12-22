@@ -10,7 +10,7 @@ const Login = () => {
     const [email, setEmail] = useState(''); 
     const [password, setPassword] = useState('');
     const navigate = useNavigate();
-    let { setActiveUser, setAccessEmail, setLists } = useContext(UserContext);
+    let { setActiveUser, setAccessEmail, setLists, setDisplayedLists} = useContext(UserContext);
 
 const findUser = () => {
     axios.post('/login', {
@@ -20,10 +20,11 @@ const findUser = () => {
       .then(function (response) {
         console.log(response);
         const {name, email, lists} = response.data
-        console.log("name",name, "email", email, "lists", lists)
+        // console.log("name",name, "email", email, "lists", lists)
         setActiveUser(name);
         setAccessEmail(email);
         setLists(lists);
+        setDisplayedLists(lists);
         if(lists.length > 0){
             navigate('/listsHome')
         } else {

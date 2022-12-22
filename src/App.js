@@ -5,7 +5,6 @@ import './App.css';
 import UserContext from "./components/Context";
 import Protected from './components/Protected';
 import Navbar from './components/Navbar';
-import MyList from './components/MyList';
 import CreateAccount from './components/CreateAccount';
 import Login from './components/Login';
 import ListsMain from './components/ListsMain';
@@ -18,7 +17,9 @@ function App() {
     let [activeUser, setActiveUser] = useState(null);
     let [accessEmail, setAccessEmail] = useState(null);
     let [lists, setLists] = useState(null);
-    let context = {activeUser, setActiveUser, accessEmail, setAccessEmail, lists, setLists};
+    let [displayedLists, setDisplayedLists] = useState(null);
+    
+    let context = {activeUser, setActiveUser, accessEmail, setAccessEmail, lists, setLists, displayedLists, setDisplayedLists};
 
 
 return (

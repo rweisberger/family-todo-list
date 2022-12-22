@@ -9,14 +9,16 @@ import UserContext from "./Context";
 
 const DeleteList = (props) => {
 
-    const { accessEmail: email } = useContext(UserContext);
+    const { accessEmail: email, setLists, displayedLists, setDisplayedLists } = useContext(UserContext);
     const { listId } = props
 
     const deleteRecord = (e) =>{
         e.preventDefault();
         axios.delete(`/delete/list/${email}/${listId}`)
         .then(function(response){
-            console.log(response)
+            // console.log(response);
+            setLists(response.data.docs[0].lists);
+            setDisplayedLists(displayedLists.filter(displayedList => displayedList.listId !== listId));
         })
         .catch(function(error){
             console.log(error)

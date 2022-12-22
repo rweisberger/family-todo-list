@@ -1,15 +1,13 @@
 import React from "react";
 import axios from "axios";
 
-import { useContext, useState, useEffect } from "react";
+import { useContext, useEffect } from "react";
 import UserContext from "./Context";
 import MyList from "./MyList";
 
 
 const ListsMain = () => {
-let { accessEmail, lists, setLists } = useContext(UserContext);
-let [displayedLists, setDisplayedLists] = useState(lists);
-
+let { accessEmail, lists, setLists, displayedLists, setDisplayedLists} = useContext(UserContext);
 
 useEffect(()=>{
     axios.get(`/lists/${accessEmail}`)
