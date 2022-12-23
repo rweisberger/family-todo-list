@@ -14,7 +14,7 @@ useEffect(()=>{
       .then(function (response) {
         const { data } = response
       setLists(data);
-      setDisplayedLists(data);
+    //   setDisplayedLists(data);
       })
       .catch(function (error) {
           console.log(error);

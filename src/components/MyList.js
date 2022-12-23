@@ -7,16 +7,47 @@ import '../App.css';
 import TodoForm from './TodoForm';
 import UserContext from './Context';
 
-function Todo({todo, index, remove}) {
-    function handle(){
-        remove(index);
+
+function Todo({listId, todo, index, remove}) {
+    let {lists, setLists} = useContext(UserContext);   
+    const [editedTask, setEditedTask] = useState(todo.description);
+    const [editingTask, setEditingTask] = useState(false);
+    const [assignedTo, setAssignedTo] = useState(todo.assignedTo);
+
+    const helpers = lists.find(list => list.listId === listId)?.helpers;
+
+    const writeEditedTask = (e) => {
+        console.log('assigned to', assignedTo, 'edited task', editedTask)        
+        setEditingTask(false)
     }
+
     return (
-            <tr>
-            <th scope="row" onClick={handle}>{todo.description} </th>
-            <td>{todo.assignedTo}</td>
-            <td><button className="btn btn-success" onClick={() => remove(index)}>✓</button></td>
-            </tr>
+        <>
+            {editingTask ? (
+                <tr>
+                    <th><input placeholder='edit task' value={editedTask} onChange={e => setEditedTask(e.currentTarget.value)}></input></th>
+                    <td>
+                        <select className="custom-select" id="inputGroupSelect04" value={assignedTo} onChange={e=> setAssignedTo(e.currentTarget.value)}>
+                                    <option value="">Who will get it done?...</option>
+                                    {helpers.map((helper, i) => <option value={helper} key={i}>{helper}</option>)}
+                        </select>
+                    </td>
+                    <td>
+                        <button className="btn btn-success" onClick={(e) => writeEditedTask(e)}>Save</button>
+                        <button className="btn btn-success" onClick={() => remove(index)}>✓</button>
+                    </td>
+                </tr>
+            ) : (
+                <tr>
+                    <th scope="row">{todo.description}</th>
+                    <td>{todo.assignedTo}</td>
+                    <td>
+                        <button className="btn btn-success" onClick={() => setEditingTask(true)}><img src="./images/edit.png" styles={{'width':"10px"}}alt="edit"/></button>
+                        <button className="btn btn-success" onClick={() => remove(index)}>✓</button>
+                    </td>
+                </tr>   
+            )}
+        </>    
     )
   };
 
@@ -63,14 +94,14 @@ function Todo({todo, index, remove}) {
         <table className="table">
         <thead>
             <tr>
-            <th scope="col">Task</th>
+            <th scope="col" data-editable="true">Task</th>
             <th scope="col">Assigned to:</th>
-            <th scope="col">Status</th>
+            <th scope="col">Actions</th>
             </tr>
         </thead>
         {todos ? (
                 <tbody>
-                    {todos.map((todo,i) => <Todo  index={todo.taskId} key={i} todo={todo} remove={removeTodo}/>)}
+                    {todos.map((todo,i) => <Todo listId={listId} index={todo.taskId} key={i} todo={todo} remove={removeTodo}/>)}
                 </tbody>
             ) : (
                 <tbody></tbody>

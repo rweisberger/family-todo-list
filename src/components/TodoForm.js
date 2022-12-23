@@ -36,7 +36,7 @@ function TodoForm({listId, addTodo}){
                                 <select className="custom-select" id="inputGroupSelect04" value={assignedTo} onChange={e=> setAssignedTo(e.currentTarget.value)}>
                                     <option value="">Who will get it done?...</option>
                                     {helpers.map((helper, i) => <option value={helper} key={i}>{helper}</option>)}
-                            </select>
+                                </select>
                             <div className="input-group-append">
                                 <button type="submit" className="btn btn-outline-warning" onClick={e=> createTodo(e)}>Add</button>
                             </div>
