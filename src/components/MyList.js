@@ -81,11 +81,11 @@ function Todo({listId, todo, index, remove}) {
         let taskId = index; 
 
         axios.delete(`/delete/task/${taskId}`)
-        .then(function (response) {
+        .then((response) => {
             setLists(response.data);
             setTodos((response.data.find(list => list.listId === listId).todos));
           })
-          .catch(function (error) {
+          .catch((error) => {
             alert(error.response.data);
           }); 
     }

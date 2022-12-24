@@ -17,7 +17,7 @@ const findUser = () => {
         email,
         password
       })
-      .then(function (response) {
+      .then((response) => {
         console.log(response);
         const {name, email, lists} = response.data
         // console.log("name",name, "email", email, "lists", lists)
@@ -31,7 +31,7 @@ const findUser = () => {
             navigate('/setup')
         };
       })
-      .catch(function (error) {
+      .catch((error) => {
         console.log(error);
         alert(error);
       });

@@ -23,12 +23,12 @@ const handleCreate = () => {
         password,
         name
       })
-      .then(function (response) {
+      .then((response) => {
         console.log(response);
         alert('Successfully created account!');
         navigate('/login')
       })
-      .catch(function (error) {
+      .catch((error) => {
         console.log(error.response.data);
         alert(error.response.data);
       }); 

@@ -11,12 +11,12 @@ let { accessEmail, lists, setLists, displayedLists, setDisplayedLists} = useCont
 
 useEffect(()=>{
     axios.get(`/lists/${accessEmail}`)
-      .then(function (response) {
+      .then((response) => {
         const { data } = response
       setLists(data);
     //   setDisplayedLists(data);
       })
-      .catch(function (error) {
+      .catch((error) => {
           console.log(error);
       })
       // eslint-disable-next-line

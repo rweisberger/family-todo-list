@@ -2,7 +2,6 @@ import React from "react";
 import axios from "axios";
 
 import { useState, useContext } from "react"; 
-// import { useNavigate } from "react-router-dom";
 
 import UserContext from "./Context";
 // after new list is added we need to get the info and add it to the context, that could be here of in ListsMain
@@ -24,13 +23,13 @@ const Setup = () => {
         axios.post('/create/list/name', {
             email, listName
           })
-          .then(function (response) {
+          .then((response) => {
             console.log(response.data.docs);
             setListId(response.data.docs);
             setIsActive(true);
             // setState to deactivate input and show name
           })
-          .catch(function (error) {
+          .catch((error) => {
             console.log(error);
             alert(error);
           });
@@ -43,10 +42,10 @@ const Setup = () => {
         axios.post('/create/list/addHelpers', {
             email, listId, helper
           })
-          .then(function (response) {
+          .then((response) => {
             console.log(response);
           })
-          .catch(function (error) {
+          .catch((error) => {
             console.log(error);
             alert(error);
           });

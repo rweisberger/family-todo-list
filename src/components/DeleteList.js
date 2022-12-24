@@ -15,12 +15,11 @@ const DeleteList = (props) => {
     const deleteRecord = (e) =>{
         e.preventDefault();
         axios.delete(`/delete/list/${email}/${listId}`)
-        .then(function(response){
-            // console.log(response);
+        .then((response) => {
             setLists(response.data.docs[0].lists);
             setDisplayedLists(displayedLists.filter(displayedList => displayedList.listId !== listId));
         })
-        .catch(function(error){
+        .catch((error) => {
             console.log(error)
         })
     }
