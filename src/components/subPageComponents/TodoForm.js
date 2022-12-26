@@ -1,7 +1,7 @@
 import React from "react";
 import { useState, useContext } from "react";
 
-import UserContext from "./Context";
+import UserContext from "../context/Context";
 import DeleteList from "./DeleteList";
 
 function TodoForm({listId, addTodo}){

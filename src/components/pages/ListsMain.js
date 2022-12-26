@@ -2,8 +2,8 @@ import React from "react";
 import axios from "axios";
 
 import { useContext, useEffect } from "react";
-import UserContext from "./Context";
-import MyList from "./MyList";
+import UserContext from "../context/Context";
+import MyList from "../subPageComponents/MyList";
 
 
 const ListsMain = () => {

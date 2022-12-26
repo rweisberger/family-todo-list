@@ -3,9 +3,7 @@ import axios from "axios";
 
 import { useContext } from "react";
 
-import UserContext from "./Context";
-
-// current status: list is deleted in MongoDB, list and button are still visible. 
+import UserContext from "../context/Context";
 
 const DeleteList = (props) => {
 

@@ -2,14 +2,14 @@ import React, { useState } from 'react';
 import { HashRouter, Routes, Route } from "react-router-dom";
 
 import './App.css';
-import UserContext from "./components/Context";
-import Protected from './components/Protected';
-import Navbar from './components/Navbar';
-import CreateAccount from './components/CreateAccount';
-import Login from './components/Login';
-import ListsMain from './components/ListsMain';
-import Setup from './components/Setup';
-import Home from './components/Home';
+import UserContext from "./components/context/Context";
+import Protected from './components/navigation/Protected';
+import Navbar from './components/navigation/Navbar';
+import CreateAccount from './components/pages/CreateAccount';
+import Login from './components//pages/Login';
+import ListsMain from './components//pages/ListsMain';
+import Setup from './components//pages/Setup';
+import Home from './components//pages/Home';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 

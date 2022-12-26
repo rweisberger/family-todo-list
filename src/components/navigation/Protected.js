@@ -1,7 +1,7 @@
 import { Navigate } from "react-router-dom";
 import { useContext } from "react";
 
-import UserContext from "./Context";
+import UserContext from "../context/Context";
 
 const ActiveUserProtected = ({ children }) => {
     let {activeUser} = useContext(UserContext);

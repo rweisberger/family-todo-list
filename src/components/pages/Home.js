@@ -1,6 +1,6 @@
 import React, {useContext }from "react";
 
-import UserContext from "./Context";
+import UserContext from "../context/Context";
 
 const Home = () => {
     let {activeUser} = useContext(UserContext);

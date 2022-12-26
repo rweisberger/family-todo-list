@@ -3,9 +3,9 @@ import axios from "axios";
 
 import {useState, useContext} from 'react';
 
-import '../App.css';
-import TodoForm from './TodoForm';
-import UserContext from './Context';
+// import '../App.css';
+import TodoForm from '../subPageComponents/TodoForm';
+import UserContext from '../context/Context';
 
 
 function Todo({listId, todo, index, remove}) {
@@ -13,11 +13,26 @@ function Todo({listId, todo, index, remove}) {
     const [editedTask, setEditedTask] = useState(todo.description);
     const [editingTask, setEditingTask] = useState(false);
     const [assignedTo, setAssignedTo] = useState(todo.assignedTo);
-
     const helpers = lists.find(list => list.listId === listId)?.helpers;
 
     const writeEditedTask = (e) => {
-        console.log('assigned to', assignedTo, 'edited task', editedTask)        
+        let { taskId } = todo; 
+        if(assignedTo === todo.assignedTo && editedTask === todo.description){
+            setEditingTask(false)
+            return
+        } 
+
+        axios.patch('/task', {
+            listId, taskId, editedTask, assignedTo 
+            })              
+            .then((response) => {
+                setLists(response.data);
+                todo.description = editedTask;
+                todo.assignedTo = assignedTo;
+            })     
+            .catch((error) => {
+                console.log(error)
+            })
         setEditingTask(false)
     }
 
@@ -25,7 +40,7 @@ function Todo({listId, todo, index, remove}) {
         <>
             {editingTask ? (
                 <tr>
-                    <th><input placeholder='edit task' value={editedTask} onChange={e => setEditedTask(e.currentTarget.value)}></input></th>
+                    <th><input className="form-control" placeholder='edit task' value={editedTask} onChange={e => setEditedTask(e.currentTarget.value)}></input></th>
                     <td>
                         <select className="custom-select" id="inputGroupSelect04" value={assignedTo} onChange={e=> setAssignedTo(e.currentTarget.value)}>
                                     <option value="">Who will get it done?...</option>
@@ -42,7 +57,7 @@ function Todo({listId, todo, index, remove}) {
                     <th scope="row">{todo.description}</th>
                     <td>{todo.assignedTo}</td>
                     <td>
-                        <button className="btn btn-success" onClick={() => setEditingTask(true)}><img src="./images/edit.png" styles={{'width':"10px"}}alt="edit"/></button>
+                        <button className="btn btn-success" onClick={() => setEditingTask(true)}>Edit</button>
                         <button className="btn btn-success" onClick={() => remove(index)}>✓</button>
                     </td>
                 </tr>   
@@ -65,13 +80,13 @@ function Todo({listId, todo, index, remove}) {
             description, 
             assignedTo 
         })
-        .then(function(response){
+        .then((response) => {
             const { lists } = response.data.docs
             setLists(lists);
             let listTodos = (lists.find(list => list.listId === listId)).todos;
             setTodos(listTodos);
         })
-        .catch(function (error) {
+        .catch((error) => {
             console.log(error);
             alert(error);
         });
@@ -94,7 +109,7 @@ function Todo({listId, todo, index, remove}) {
         <table className="table">
         <thead>
             <tr>
-            <th scope="col" data-editable="true">Task</th>
+            <th scope="col">Task</th>
             <th scope="col">Assigned to:</th>
             <th scope="col">Actions</th>
             </tr>

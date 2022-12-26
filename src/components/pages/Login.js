@@ -4,7 +4,7 @@ import axios from "axios";
 import {useState, useContext} from "react"; 
 import { useNavigate } from "react-router-dom";
 
-import UserContext from "./Context";
+import UserContext from "../context/Context";
 
 const Login = () => {
     const [email, setEmail] = useState(''); 
@@ -18,7 +18,7 @@ const findUser = () => {
         password
       })
       .then((response) => {
-        console.log(response);
+        // console.log(response);
         const {name, email, lists} = response.data
         // console.log("name",name, "email", email, "lists", lists)
         setActiveUser(name);

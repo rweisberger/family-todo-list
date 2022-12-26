@@ -3,7 +3,7 @@ import axios from "axios";
 
 import { useState, useContext } from "react"; 
 
-import UserContext from "./Context";
+import UserContext from "../context/Context";
 // after new list is added we need to get the info and add it to the context, that could be here of in ListsMain
 
 const Setup = () => {
@@ -16,7 +16,7 @@ const Setup = () => {
     
     const createList = (e) => { 
       if(newListName.length === 0) return
-        console.log(accessEmail, newListName)
+        // console.log(accessEmail, newListName)
         e.preventDefault();
         let email = accessEmail;
         let listName = newListName
@@ -24,7 +24,7 @@ const Setup = () => {
             email, listName
           })
           .then((response) => {
-            console.log(response.data.docs);
+            // console.log(response.data.docs);
             setListId(response.data.docs);
             setIsActive(true);
             // setState to deactivate input and show name
@@ -60,9 +60,9 @@ const Setup = () => {
                     <form>
                         List Name<br/> 
                         <div className="input-group mb-3">
-                          <input type="listname" className="form-control" id="listname" placeholder="list name" value={newListName} onChange={e => setNewListName(e.currentTarget.value)}/>
+                          <input type="listname" className="form-control" id="listname" placeholder="Name your list" value={newListName} onChange={e => setNewListName(e.currentTarget.value)}/>
                           <div className="input-group-append">
-                            <button type="submit" className="btn btn-warning " onClick={createList}>Create List</button><br/>
+                            <button type="submit" className="btn btn-warning " onClick={createList}>Create List</button>
                           </div>
                         </div>
                         {isActive ? (
