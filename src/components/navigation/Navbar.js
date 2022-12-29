@@ -20,7 +20,7 @@ import UserContext from "../context/Context";
                 <div className="navbar-nav ml-auto">  
                 <a className="nav-item nav-link px-3" href="#/listsHome">My Lists</a>
                 <a className="nav-item nav-link px-3" href="#/setup">Add New List</a>
-                <button type="button" className="btn btn-outline-light" onClick={logout}>Logout</button>          
+                <button type="button" className="btn btn-outline-light mr-3" onClick={logout}>Logout</button>          
                 </div>
                 ) : (
                 <div className="navbar-nav ml-auto">  
