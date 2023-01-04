@@ -11,12 +11,33 @@ const CreateAccount = () => {
     const [password, setPassword] = useState('');
     const navigate = useNavigate();
 
+    function validate(field, label){
+        if(!field){
+            alert('Error: ' + label + ' required');
+            return false;
+        }
+        if(field === password && field.length < 8){
+            alert('Error: Password must be 8 or more characters long');
+            return false;
+        }
+        if(field === email){
+            //The pattern below was take from https://www.w3schools.blog/email-validation-javascript-js
+            var emailFormat = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/;
+            if(field.match(emailFormat)){
+                return true
+            }else{
+                alert('Error: Enter a valid email address');
+                return false;
+            }
+        }
+        return true;
+    }
 
 const handleCreate = () => {
     console.log(name, email, password);
-    if(!name) return;
-    if(!email) return;
-    if(!password) return;
+    if(!validate(name,'name')) return;
+    if(!validate(email, 'email')) return;
+    if(!validate(password, 'password')) return;
 
     axios.post('/account/newUser', {
         email,
