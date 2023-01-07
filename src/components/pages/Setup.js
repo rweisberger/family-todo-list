@@ -10,7 +10,7 @@ const Setup = () => {
     const [newListName, setNewListName] = useState(''); 
     const [helper, setHelper] = useState([]);
     const [listId, setListId] = useState('');
-    const [isActive, setIsActive] = useState(false);
+    const [listNameCreated, setListNameCreated] = useState(false);
 
     let { accessEmail } = useContext(UserContext);
     
@@ -26,7 +26,7 @@ const Setup = () => {
           .then((response) => {
             // console.log(response.data.docs);
             setListId(response.data.docs);
-            setIsActive(true);
+            setListNameCreated(true);
             // setState to deactivate input and show name
           })
           .catch((error) => {
@@ -57,24 +57,33 @@ const Setup = () => {
         <div className="card bg-info m-5">
             <div className="card-body">
                 <h5 className="card-title">Setup</h5>
+                  {listNameCreated ? (
                     <form>
-                        List Name<br/> 
-                        <div className="input-group mb-3">
-                          <input type="listname" className="form-control" id="listname" placeholder="Name your list" value={newListName} onChange={e => setNewListName(e.currentTarget.value)}/>
-                          <div className="input-group-append">
-                            <button type="submit" className="btn btn-warning " onClick={createList}>Create List</button>
+                      List Name<br/> 
+                      <div className="input-group mb-3">
+                        <input type="listname" className="form-control" id="listname" placeholder={newListName} value={newListName} onChange={e => setNewListName(e.currentTarget.value)} />
+                        <div className="input-group-append">
+                          <button type="submit" className="btn btn-warning"  onClick={createList} disabled>Create List</button>
+                        </div>
+                      </div>
+                      <div className="input-group mb-3"> 
+                        <input type="name" className="form-control" id="name" placeholder="Enter name" value={helper} onChange={e => setHelper(e.currentTarget.value)}/><br/>
+                        <div className="input-group-append">
+                          <button type="submit" className="btn btn-warning " onClick={addHelper}>Add Helper</button>
                           </div>
-                        </div>
-                        {isActive ? (
-                        <div className="input-group mb-3"> 
-                          <input type="name" className="form-control" id="name" placeholder="Enter name" value={helper} onChange={e => setHelper(e.currentTarget.value)}/><br/>
-                          <div className="input-group-append">
-                            <button type="submit" className="btn btn-warning " onClick={addHelper}>Add Helper</button>
-                            </div>
-                        </div>
-                        ):('')}
-                        
+                      </div>
                     </form>
+                  ):(
+                    <form>
+                      List Name<br/> 
+                        <div className="input-group mb-3">
+                        <input type="listname" className="form-control" id="listname" placeholder="Name your list" value={newListName} onChange={e => setNewListName(e.currentTarget.value)}/>
+                        <div className="input-group-append">
+                          <button type="submit" className="btn btn-warning " onClick={createList}>Create List</button>
+                        </div>
+                      </div>
+                    </form>
+                  )}       
             </div>
         </div>
     );
