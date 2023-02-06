@@ -3,7 +3,7 @@
 ### Description
 <p> The files were created witth Create React App. Users can create and account, login and add todo to the list.</p>
 
-<p> This is a work in progress and mush still needs to be done. <p/>
+<p> This is a work in progress and mush still needs to be done. </p>
 
 ### Support
 <p> Please contact rachel.weisberger@gmail.com for support. </p>
